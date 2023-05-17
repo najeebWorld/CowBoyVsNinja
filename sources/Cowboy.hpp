@@ -13,7 +13,7 @@ public:
     void shoot(Character* enemy);
     bool hasBullets() const;
     void reload();
-    string print();
+    string print() const override;
     int getBullets();
 };
 }

@@ -15,6 +15,6 @@ public:
 
     void slash(Character *enemy);
 
-    //string print() override;
+    string print() const override;
 };
 }

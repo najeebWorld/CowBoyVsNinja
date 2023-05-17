@@ -39,20 +39,16 @@ using namespace ariel ;
         return bullets;
     }
 
-    string Cowboy::print(){
+    string Cowboy::print() const{
         string str = "";
 
         str = str + "Cowboy (" + this->getName() + ")";
         if(this->isAlive())
         {
-            str = str+ "The Hit Points :" ; // + to_string(getHitP);
+            str = str+ "The Hit Points :" + to_string(getHitP());
             
         }
-
-        //str = str + " Location : (" + to_string()
-
-
-
+        str = str + "location : (" + to_string(this->getLocation().gitX()) + "," + to_string(this->getLocation().gitY()) ;
         return str;
     }
 

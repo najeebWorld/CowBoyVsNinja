@@ -36,8 +36,8 @@ using namespace ariel;
         return *this;
     }
 
-    bool Character::isAlive() {
-        return hitPoints > 0;
+    bool Character::isAlive() const{
+        return this->hitPoints > 0;
     }
 
     double Character::distance(Character* other) {
@@ -53,20 +53,18 @@ using namespace ariel;
         
     }
 
-    std::string Character::getName() {
-        return name;
+    std::string Character::getName() const {
+        return this->name;
     }
 
-    Point Character::getLocation() {
-        return location;
+    Point Character::getLocation() const{
+        return this->location;
     }
 
-    std::string Character::print() {
-        std::string info = "Name: " + name + ", Location: (" + std::to_string(location.gitX()) + ", " + std::to_string(location.gitY()) + "), Hit points: " + std::to_string(hitPoints);
-        return info;
-    }
+    
 
-    int Character::getHitP(){return hitPoints;}
+    int Character::getHitP() const
+    {return this->hitPoints;}
     bool Character::inTeam(){return InTeam;}
     void Character::setinTeam(bool flag){InTeam = flag;}
     void Character::setLocatin(Point loc)

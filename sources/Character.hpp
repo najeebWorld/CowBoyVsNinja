@@ -26,17 +26,18 @@ public:
     Character& operator=(const Character& other); // Copy assignment operator
     Character& operator=(Character&& other) noexcept; // Move assignment operator
 
-    bool isAlive();
+    bool isAlive() const;
     double distance(Character* other);
     void hit(int hitting_points);
-    std::string getName();
-    Point getLocation();
-    std::string print();
-    void setLocatin(Point loc);
+    std::string getName() const;
+    Point getLocation() const;
+    virtual std::string print() const = 0;
+    void setLocatin(Point loc) ;
 
-    int getHitP();
+    int getHitP() const;
     bool inTeam();
     void setinTeam(bool flag);
+
 
 
 };

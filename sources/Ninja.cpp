@@ -30,6 +30,15 @@ using namespace ariel;
     }
 
 
-    
+    string Ninja::print() const{
+        string str = "";
+        str = str + "The Ninja(" + this->getName() + ")";
+        if(this->isAlive())
+        {
+            str = str + "hit point" + to_string(getHitP());
+        }
+        str = str + "location : (" + to_string(this->getLocation().gitX()) + "," + to_string(this->getLocation().gitY()) ;
+        return str;
+    }
     
 
