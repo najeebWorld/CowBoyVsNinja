@@ -2,7 +2,19 @@
 
 using namespace ariel;
 
-    Team::Team(Character* character) : leader(character) {}
+    Team::Team(Character* character) : leader(character) 
+    {
+        this->war.clear();
+        this->war.push_back(leader);
+        if (this->leader->inTeam())
+        {
+            __throw_runtime_error("the leader in other Team");
+
+        }
+
+        this->leader->setinTeam(true);        
+    }
+
 
     Team::Team(const Team& other) : leader(other.leader), war(other.war) {}
 
@@ -45,12 +57,20 @@ using namespace ariel;
     }
 
     void Team::add(Character* warrior) {
-        war.push_back(warrior);
+        if(warrior->inTeam())
+        {
+            __throw_runtime_error("warrior in other team");
+        }
+        if(this->war.size() == 10)
+        {
+            __throw_runtime_error("the team is full");
+        }
+        warrior->setinTeam(true);
+        this->war.push_back(warrior);
     }
 
     void Team::attack(Team* enemies) {
-        // Here, you would need to define the logic of how a team attacks another team.
-        // For example, you might want each warrior in this team to attack a random warrior in the other team.
+        
     }
 
     int Team::stillAlive() {

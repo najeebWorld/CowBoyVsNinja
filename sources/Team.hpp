@@ -6,12 +6,14 @@
 #include "OldNinja.hpp"
 #include "TrainedNinja.hpp"
 #include "YoungNinja.hpp"
+
 const unsigned int NUM_WAR = 10;
 namespace ariel {
     class Team {
+
     private:
         Character* leader;
-        std::vector<Character*> war {NUM_WAR};
+        vector<Character*> war {NUM_WAR};
     
     public:
         // Regular constructor
@@ -33,8 +35,14 @@ namespace ariel {
         ~Team();
 
         void add(Character* warrior);
-        void attack(Team* enemies);
-        int stillAlive();
-        void print();
+        virtual void attack(Team* enemies);
+        virtual int stillAlive();
+        virtual void print();
+
+        void setLeader(Character *lead);
+        Character *getLeader();
+
+        vector <Character*> &getwars();
+        Character *near(Team *team,Character *lead);
     };
 }
