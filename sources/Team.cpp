@@ -73,6 +73,11 @@ using namespace ariel;
     }
 
     void Team::attack(Team* enemies) {
+
+        if(!enemies->getLeader()->isAlive()) {
+            throw std::runtime_error("the enemy is dead");
+
+        }
         //first check if the leader is live
         if(enemies->getLeader()->isAlive()==false)
         {

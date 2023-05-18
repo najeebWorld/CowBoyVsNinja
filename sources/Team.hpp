@@ -1,3 +1,6 @@
+#ifndef TEAM_HPP
+#define TEAM_HPP
+
 #include <vector>
 #include "Point.hpp"
 #include "Ninja.hpp"
@@ -7,7 +10,6 @@
 #include "TrainedNinja.hpp"
 #include "YoungNinja.hpp"
 
-const unsigned int NUM_WAR = 10;
 namespace ariel {
     class Team {
 
@@ -49,3 +51,4 @@ namespace ariel {
         vector <Character*> &getwars() ;
     };
 }
+#endif
