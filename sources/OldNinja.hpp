@@ -1,3 +1,6 @@
+#ifndef OLD_NINJA_HPP
+#define OLD_NINJA_HPP
+
 #include "Ninja.hpp"
 
 namespace ariel
@@ -9,3 +12,5 @@ namespace ariel
         //void move(Character* enemy) override;
     };
 }
+
+#endif // OLD_NINJA_HPP

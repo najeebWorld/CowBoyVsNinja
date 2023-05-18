@@ -11,7 +11,7 @@ private:
 public: 
     Cowboy(string name,Point location);
     void shoot(Character* enemy);
-    bool hasBullets() const;
+    bool hasboolets() const;
     void reload();
     string print() const override;
     int getBullets();

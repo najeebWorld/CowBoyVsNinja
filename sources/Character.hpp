@@ -17,7 +17,7 @@ private:
 public:
     Character(string Name, Point location);
     Character( Character& other); // Copy constructor should take const reference
-    Character(Character&& other) noexcept; // Move constructor
+    Character(Character&& other) ; // Move constructor
     //constructor with the hitPoints also. 
     Character(string name, Point location, int hitPoints);
 

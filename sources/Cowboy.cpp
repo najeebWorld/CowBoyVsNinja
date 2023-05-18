@@ -16,13 +16,13 @@ using namespace ariel ;
             __throw_runtime_error("charcter cant fight himself");
         }
 
-        if (this->hasBullets()) {
+        if (this->hasboolets()) {
             enemy->hit(10); // Assume each bullet deals 50 points of damage.
             bullets--;
         }
     }
 
-    bool Cowboy::hasBullets() const {
+    bool Cowboy::hasboolets() const {
         return bullets > 0;
     }
 

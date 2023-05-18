@@ -1,3 +1,6 @@
+#ifndef TRAINED_NINJA_HPP
+#define TRAINED_NINJA_HPP
+
 #include "Ninja.hpp"
 
 namespace ariel
@@ -8,3 +11,5 @@ namespace ariel
         TrainedNinja(string Name, Point location);
     };
 }
+
+#endif // TRAINED_NINJA_HPP

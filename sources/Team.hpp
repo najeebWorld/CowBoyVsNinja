@@ -13,7 +13,7 @@ namespace ariel {
 
     private:
         Character* leader;
-        vector<Character*> war {NUM_WAR};
+        vector<Character*> war ;
     
     public:
         // Regular constructor
@@ -32,17 +32,20 @@ namespace ariel {
         Team& operator=(Team&& other) noexcept;
 
         // Destructor
-        ~Team();
+        virtual ~Team();
 
         void add(Character* warrior);
         virtual void attack(Team* enemies);
         virtual int stillAlive();
         virtual void print();
+        void printCowboys();
+        void printNinjas();
+        
 
         void setLeader(Character *lead);
+        Character *closestLead(Character *leader,Team *team);
         Character *getLeader();
 
-        vector <Character*> &getwars();
-        Character *near(Team *team,Character *lead);
+        vector <Character*> &getwars() ;
     };
 }
