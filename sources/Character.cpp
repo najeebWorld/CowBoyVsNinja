@@ -37,6 +37,7 @@ using namespace ariel;
     }
 
     bool Character::isAlive() const{
+        cout << this->hitPoints << endl;
         if (this->hitPoints > 0)
         {
             return true;

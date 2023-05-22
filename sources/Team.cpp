@@ -92,7 +92,16 @@ void Team::attack(Team *opponents)
     }
 
     attackWithCowboys(opponents, target);
-    attackWithNinjas(opponents, target);
+    if(opponents->stillAlive())
+    {
+        if(!(target->isAlive()))
+        {
+            target = closestLead(this->getLeader(),opponents );
+        }
+        attackWithNinjas(opponents, target);
+
+    }
+    
 }
 
 
@@ -128,7 +137,7 @@ void Team::updateLeaderIfNotAlive(Team *team, Character *leader)
 
 void Team::attackWithCowboys(Team *opponents, Character *target)
 {
-    for (auto warrior : war)
+    for (auto warrior : this->war)
     {
         if (!opponents->stillAlive() || !this->stillAlive())
         {
@@ -172,8 +181,7 @@ void Team::attackWithNinjas(Team *opponents, Character *target)
     }
 }
 
-    
-    
+
     Character *Team::closestLead(Character *charInQuestion, Team *givenTeam)
 {
     double smallestDist = std::numeric_limits<double>::infinity();
@@ -203,20 +211,20 @@ void Team::attackWithNinjas(Team *opponents, Character *target)
     }
 
     int Team::stillAlive() {
-    int all_alive = 0;
+    int liveWarriors = 0;
 
-    // Traverse the vector
-    for (auto &warrior : war)
-    {
-        // Check if the character is alive
-        if (warrior && warrior->getHitP() > 0)
-        {
-            // Check if it's a cowboy or a ninja and increment all_alive
-            all_alive += dynamic_cast<Cowboy *>(warrior) != nullptr || dynamic_cast<Ninja *>(warrior) != nullptr;
+    for (const auto& warrior : war) {
+        if (warrior && warrior->getHitP() > 0) {
+            bool isCowboy = dynamic_cast<Cowboy *>(warrior) != nullptr;
+            bool isNinja = dynamic_cast<Ninja *>(warrior) != nullptr;
+            
+            if (isCowboy || isNinja) {
+                liveWarriors++;
+            }
         }
     }
 
-    return all_alive;
+    return liveWarriors;
 }
 
 
