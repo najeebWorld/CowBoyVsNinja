@@ -23,6 +23,7 @@ using namespace ariel ;
     }
 
     bool Cowboy::hasboolets() const {
+        //__throw_runtime_error("the enemy is dead");
         return bullets > 0;
     }
 

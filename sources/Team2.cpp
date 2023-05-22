@@ -4,68 +4,78 @@ using namespace ariel;
 
     Team2::Team2(Character* leader) : Team(leader){}
 
-    void Team2::attack(Team* enemies) {
-        // //first check if the leader is live
-        // if(enemies->getLeader()->isAlive()==false)
-        // {
-        //     enemies->getLeader()->setinTeam(false);
-        //     //define new leader to fight him
-        //     enemies->setLeader(closestLead(leader,this));
-        //     // enemies->setLeader(closestLead(enemies->getLeader(),enemies));
-        // }
-        // //find the close enemy to the fighter leader,if its not alive the closest one is default
-        // if(enemies->getLeader()->isAlive()==false)
-        // {
-        //     enemies->getLeader()->setinTeam(false);
-        //     //set the closest one to be the leader
-        //     enemies->setLeader(closestLead(enemies->getLeader(),enemies));
-        // }
-        // //choose the close enemy to the team
-        // Character *selected = closestLead(this->leader,enemies);
-        // //war on the selected enemy with all live charecter in team
-
-        // for(auto fighter :war)
-        // {
-        //     if ((enemies->stillAlive() == false) || (this->stillAlive() == false))
-        //     {
-        //         return;
-        //     }
-            
-        //     //if the selected is dead , find the closest one to him
-        //     if(selected->isAlive()==false)
-        //     {
-        //         selected = closestLead(selected,enemies);
-        //     }
-
-        //     Cowboy* cowboy = dynamic_cast<Cowboy*>(fighter);
-
-        //     if (cowboy != nullptr) {
-        //         if (cowboy->hasboolets()) {
-        //             // Cowboy with bullets shoots victim
-        //             cowboy->shoot(selected);
-        //             } 
-        //             else 
-        //             {
-        //             // Cowboy without bullets loads gun
-        //             cowboy->reload();
-        //             }
-        //     }
-        //     // Attempt to cast warrior to Ninja
-        //     Ninja* ninja = dynamic_cast<Ninja*>(fighter);
-
-        //     if (ninja != nullptr) {
-        //         if (fighter->distance(selected) <= 1) {
-        //             // Ninja within 1m of victim kills victim
-        //             ninja->slash(selected);
-        //         }
-        //     else
-        //     {
-        //         // Ninja further than 1m from victim moves closer
-        //         ninja->move(selected);                }
-        //     }
-
-        // }
+     void Team2::attack(Team *opposingTeam)
+{
+    if (opposingTeam == nullptr)
+    {
+        throw std::invalid_argument("Opposing team must contain at least one member");
     }
+    
+    
+
+    // Verify if leader is alive
+    if (!(opposingTeam->getLeader()->isAlive()))
+    {
+        opposingTeam->getLeader()->setinTeam(false);
+        this->setLeader(closestLead(opposingTeam->getLeader(),this ));
+    }
+    // Find closest living enemy to leader
+    if (!(opposingTeam->getLeader()->isAlive()))
+    {
+        opposingTeam->getLeader()->setinTeam(false);
+        opposingTeam->setLeader(closestLead(opposingTeam->getLeader(),opposingTeam));
+    }
+    
+    Character *target = closestLead(opposingTeam->getLeader(),opposingTeam);
+    if (!target)
+    {
+        return;
+    }
+    // Execute attack with all surviving team members
+    for (auto teamMember : getwars())
+    {
+        if ( this->getLeader()->isAlive() == 0)
+        {
+            return;
+        }
+        if (!(target->isAlive()))
+        {
+            target = closestLead(target,opposingTeam);
+        }
+        if ((dynamic_cast<Cowboy *>(teamMember) != nullptr) && (dynamic_cast<Cowboy *>(teamMember)->hasboolets()))
+        {
+            // Cowboy with bullets fires at target
+            dynamic_cast<Cowboy *>(teamMember)->shoot(target);
+        }
+        else if (dynamic_cast<Cowboy *>(teamMember) != nullptr)
+        {
+            // Cowboy without bullets reloads gun
+            dynamic_cast<Cowboy *>(teamMember)->reload();
+        }
+    }
+    for (auto teamMember : getwars())
+    {
+        if ( (this->getLeader()->isAlive() == 0))
+        {
+            return;
+        }
+        
+        if (!(target->isAlive()))
+        {
+            target = closestLead(target,opposingTeam);
+        }
+        if (dynamic_cast<Ninja *>(teamMember) != nullptr && teamMember->distance(target) <= 1)
+        {
+            // Ninja within 1m of target eliminates target
+            dynamic_cast<Ninja *>(teamMember)->slash(target);
+        }
+        else if (dynamic_cast<Ninja *>(teamMember) != nullptr)
+        {
+            // Ninja further than 1m from target moves closer
+            dynamic_cast<Ninja *>(teamMember)->move(target);
+        }
+    }
+}
 
 
     int Team2::stillAlive() {

@@ -49,6 +49,12 @@ namespace ariel {
         Character *getLeader();
 
         vector <Character*> &getwars() ;
+
+        void attackWithNinjas(Team *opponents, Character *target);
+        void attackWithCowboys(Team *opponents, Character *target);
+        void updateLeaderIfNotAlive(Team *team, Character *leader);
+        void validateArguments(Team *opponents);
     };
+
 }
 #endif
