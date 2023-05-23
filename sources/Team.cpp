@@ -15,7 +15,6 @@ using namespace ariel;
 
         }
 
-        this->leader->setinTeam(true);        
     }
 
 
