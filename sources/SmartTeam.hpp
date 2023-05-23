@@ -1,16 +1,28 @@
 #include "Team.hpp"
-#include <vector>
 
 namespace ariel {
-    class Team2 : public Team {
+    class SmartTeam : public Team {
     
     public:
         
-        Team2(Character *leader);
-        ~Team2() = default;
+        SmartTeam(Character *leader);
+        
+        // Copy constructor
+        SmartTeam(const SmartTeam& other);
+
+        // Move constructor
+        SmartTeam(SmartTeam&& other) noexcept;
+        
+        // Copy assignment operator
+        SmartTeam& operator=(const SmartTeam& other);
+        
+        // Move assignment operator
+        SmartTeam& operator=(SmartTeam&& other) noexcept;
+        
+        // Destructor
+        ~SmartTeam() override = default;
 
         void attack(Team* enemyTeam) override;
-        int stillAlive() override;
-        void print() override;
+        
     };
 }

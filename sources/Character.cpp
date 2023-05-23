@@ -5,11 +5,11 @@ using namespace ariel;
 
     Character::Character(string Name, Point loc) : name(Name), location(loc) {}
     Character::Character(string name, Point location, int hitPoints) : name(name),location(location), hitPoints(hitPoints){}
-    Character::Character(Character& other):name(other.name), location(other.location){}
-    Character::Character(Character&& other) : name(move(other.name)), location(other.location)
-    {
-        other.location = Point(0,0);
-    }
+    //Character::Character(Character& other):name(other.name), location(other.location){}
+    //Character::Character(Character&& other) : name(move(other.name)), location(other.location)
+    // {
+    //     other.location = Point(0,0);
+    // }
     
 
     Character::~Character() {}

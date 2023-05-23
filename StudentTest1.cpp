@@ -640,7 +640,7 @@ TEST_SUITE("Battle simulations") {
             simulate_battle(team, team2);
 
            CHECK(((team.stillAlive() && !team2.stillAlive()) || (!team.stillAlive() && team2.stillAlive())));
-        }}
+        }
 
         SUBCASE("Team vs Team2") {
             Team team{random_char()};
@@ -668,5 +668,5 @@ TEST_SUITE("Battle simulations") {
             CHECK(((team.stillAlive() && !team2.stillAlive()) || (!team.stillAlive() && team2.stillAlive())));
         }
     }
-
+}
   

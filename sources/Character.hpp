@@ -15,9 +15,9 @@ private:
     bool InTeam = false;
 
 public:
-    Character(string Name, Point location);
-    Character( Character& other); // Copy constructor should take const reference
-    Character(Character&& other) ; // Move constructor
+    Character(string Name, Point location) ;
+    Character( Character& other) = default; // Copy constructor should take const reference
+    Character(Character&& other) = default ; // Move constructor
     //constructor with the hitPoints also. 
     Character(string name, Point location, int hitPoints);
 
