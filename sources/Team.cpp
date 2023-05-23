@@ -75,33 +75,15 @@ using namespace ariel;
 void Team::attack(Team *opponents)
 {
     validateArguments(opponents);
-    updateLeaderIfNotAlive(this, leader);
-    updateLeaderIfNotAlive(opponents, opponents->getLeader());
-
-    if (this->getLeader() == nullptr || opponents->getLeader() == nullptr)
-    {
-        cout << "ifififiif "<< endl;
-        return;
-    }
-
+    this->leader = closestLead(this->leader,this);
+    
     Character *target = closestLead(this->getLeader(),opponents );
     if (!target)
     {
-        cout << "tar" << endl;
         return;
     }
-
-    attackWithCowboys(opponents, target);
-    if(opponents->stillAlive())
-    {
-        if(!(target->isAlive()))
-        {
-            target = closestLead(this->getLeader(),opponents );
-        }
-        attackWithNinjas(opponents, target);
-
-    }
-    
+    attackWithCowboys(opponents, target);    
+    attackWithNinjas(opponents, target);
 }
 
 
@@ -112,17 +94,9 @@ void Team::validateArguments(Team *opponents)
     {
         throw invalid_argument("Opponents must consist of at least one member");
     }
-    if (!this->stillAlive())
-    {
-        throw invalid_argument("Team can't attack without warriors");
-    }
     if (!opponents->stillAlive())
     {
         throw runtime_error("Can't attack team without warriors");
-    }
-    if (opponents == this)
-    {
-        throw invalid_argument("Friendly fire isn't allowed");
     }
 }
 
@@ -139,17 +113,15 @@ void Team::attackWithCowboys(Team *opponents, Character *target)
 {
     for (auto warrior : this->war)
     {
-        if (!opponents->stillAlive() || !this->stillAlive())
-        {
-            return;
-        }
         if (!warrior->isAlive())
         {
             continue;
         }
+        if(target == nullptr){return;}
         if (!target->isAlive())
         {
-            target = closestLead(target,opponents);
+            target = closestLead(this->leader,opponents);
+            if(target == nullptr){return;}
         }
         if (auto cowboy = dynamic_cast<Cowboy *>(warrior))
         {
@@ -162,17 +134,15 @@ void Team::attackWithNinjas(Team *opponents, Character *target)
 {
     for (auto warrior : war)
     {
-        if (!opponents->stillAlive() || !this->stillAlive())
-        {
-            return;
-        }
         if (!warrior->isAlive())
         {
             continue;
         }
+        if(target == nullptr) return;
         if (!target->isAlive())
         {
-            target = closestLead(target,opponents);
+            target = closestLead(this->leader,opponents);
+            if(target == nullptr) return;
         }
         if (auto ninja = dynamic_cast<Ninja *>(warrior))
         {

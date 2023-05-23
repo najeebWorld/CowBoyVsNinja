@@ -37,7 +37,6 @@ using namespace ariel;
     }
 
     bool Character::isAlive() const{
-        cout << this->hitPoints << endl;
         if (this->hitPoints > 0)
         {
             return true;
@@ -53,13 +52,8 @@ using namespace ariel;
     if(hitting_points < 0){
         throw std::invalid_argument ("Negative hitting point is not allowed.");
     }
-    cout << "dedede" << this->getName() << endl;
     this->hitPoints -= hitting_points;
-        
-    // if(this->hitPoints < 0){
-    //     throw std::invalid_argument ("You have negative hit point , error ");
-    // }
-}
+    }
 
     std::string Character::getName() const {
         return this->name;
