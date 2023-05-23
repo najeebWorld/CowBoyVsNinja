@@ -159,7 +159,7 @@ void Team::attackWithNinjas(Team *opponents, Character *target)
 
     auto teamMembers = givenTeam->getwars();
     for (auto currentMember : teamMembers) {
-        if(currentMember->isAlive() && currentMember != this->leader)
+        if(currentMember->isAlive())
         {
             double currentDistance = this->leader->distance(currentMember);
             if(currentDistance < smallestDist)
